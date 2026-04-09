@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const Login = () => {
+const Login = ({ onLoginSuccess }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        // ... 在成功拿到 token 存入 localStorage 后 ...
+        onLoginSuccess(); // 通知父组件 App 状态变了
         try {
             // 注意：这里用的是我们在 vite.config.js 配置的 /api 代理
             const formData = new FormData();
